@@ -1,7 +1,7 @@
 from django import forms
 
 class ContactForm(forms.Form):
-    Nome_completo = forms.CharField(
+    nome_completo = forms.CharField(
     error_messages={'required': 'Obrigatório o preenchimento do nome'},
         widget=forms.TextInput(
             attrs={
@@ -10,7 +10,7 @@ class ContactForm(forms.Form):
                 }
             )
         )
-    email     = forms.EmailField(
+    email = forms.EmailField(
         error_messages={'invalid': 'Digite um email válido!'},
         widget=forms.EmailInput(
             attrs={
@@ -19,7 +19,7 @@ class ContactForm(forms.Form):
                 }
             )
         )
-    Mensagem   = forms.CharField(
+    mensagem = forms.CharField(
         error_messages={'required': 'É obrigatório o preenchimento do campo mensagem!'},
         widget=forms.Textarea(
             attrs={

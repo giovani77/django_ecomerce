@@ -28,7 +28,7 @@ def contact_page(request):
         print(contact_form.cleaned_data)
     #if request.method == "POST":
         #print(request.POST)
-        #print(request.POST.get('Nome_Completo'))
+        #print(request.POST.get('nome_Completo'))
         #print(request.POST.get('email'))
-        #print(request.POST.get('Mensagem'))
+        #print(request.POST.get('mensagem'))
     return render(request, "contact/view.html", context)
