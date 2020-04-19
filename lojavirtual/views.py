@@ -6,7 +6,7 @@ from .forms import ContactForm, LoginForm, RegisterForm
 
 def home_page(request):
     context = {
-        "title": "Página principal",
+        "title": "Página principal VALENDO",
         "content": "Seja bem-vindo a página principal",
     }
 
