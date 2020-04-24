@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-cd webapps/
+#cd webapps/
 
 #criando ambiente virtual.
 python3 -m venv myvenv
