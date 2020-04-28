@@ -1,4 +1,4 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
-myvenv/
+static_cdn/
 *.sqlite3
