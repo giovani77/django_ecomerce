@@ -16,6 +16,8 @@ COPY requirements.txt ./
 # Executa o pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN python -m pip install Pillow
+
 # "Copia" os arquivos locais para o diretorio Python no container 
 COPY . .
 
