@@ -27,7 +27,7 @@ def produto_list_view(request):
 #Class Based View
 class ProdutoDetailView(DetailView):
     #traz todos os produtos do banco de dados sem filtrar nada 
-    queryset = Produto.objects.all()
+    #queryset = Produto.objects.all()
     template_name = "produtos/detail.html"
     
     def get_context_data(self, *args, **kwargs):
@@ -35,18 +35,20 @@ class ProdutoDetailView(DetailView):
         print(context)
         return context
 
+    def get_object(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        instance = Produto.objects.get_by_id(pk)
+        if instance is None:
+            raise Http404("Esse produto não existe!")
+        return instance
+
 #Function Based View
 def produto_detail_view(request, pk = None, *args, **kwargs):
-    #print(args)
-    #print(kwargs)
-    #instance = Produto.objects.get(pk = pk) #get the object id
-    #instance = get_object_or_404(Produto, pk = pk)
-    #queryset = Produto.objects.all()
-    qs = Produto.objects.filter(id = pk)
-    if qs.count() == 1:
-        instance = qs.first()
-    else:
+    instance = Produto.objects.get_by_id(pk)
+    print(instance)
+    if instance is None:
         raise Http404("Esse produto não existe!")
+
     context = {
         'object': instance
     }
