@@ -4,6 +4,20 @@ from django.shortcuts import render, get_object_or_404
 
 from .models import Produto
 
+class ProdutoEhDestaqueListView(ListView):
+    template_name = "produtos/list.html"
+    
+    def get_queryset(self, *args, **kwargs):
+        return Produto.objects.ehDestaque()
+
+class ProdutoEhDestaqueDetailView(DetailView):
+    queryset = Produto.objects.all().ehDestaque()
+    template_name = "produtos/destaque-detail.html"
+
+    # def get_queryset(self, *args, **kwargs):
+    #    request = self.request
+    #    return Produto.objects.ehDestaque()
+
 #Class Based View
 class ProdutoListView(ListView):
     #traz todos os produtos do banco de dados sem filtrar nada
