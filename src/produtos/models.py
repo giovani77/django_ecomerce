@@ -39,6 +39,9 @@ class Produto(models.Model): #produto_categoria
 
     objects = ProdutoManager()
     
+    def get_absolute_url(self):
+        return "/produtos/{slug}/".format(slug = self.slug)
+
     #pythen 3
     def __str__(self):
         return self.nome
