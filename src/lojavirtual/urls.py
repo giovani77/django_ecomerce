@@ -25,6 +25,7 @@ from produtos.views import (
     produto_list_view,
     ProdutoDetailView,
     produto_detail_view,
+    ProdutoDetailSlugView,
     ProdutoEhDestaqueListView,
     ProdutoEhDestaqueDetailView)
 
@@ -42,6 +43,7 @@ urlpatterns = [
     path('produtos-fbv/', produto_list_view),    
     path('produtos/<int:pk>', ProdutoDetailView.as_view()),
     path('produtos-fbv/<int:pk>', produto_detail_view), 
+    path('produtos/<slug:slug>/', ProdutoDetailSlugView.as_view()),
     path('admin/', admin.site.urls),
 ]
 
