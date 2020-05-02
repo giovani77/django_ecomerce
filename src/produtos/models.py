@@ -1,4 +1,6 @@
 from django.db import models
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
 
 #Custom queryset
 class ProdutoQuerySet(models.query.QuerySet):
@@ -28,7 +30,7 @@ class ProdutoManager(models.Manager):
 # Create your models here.
 class Produto(models.Model): #produto_categoria
     nome            = models.CharField(max_length=120)
-    slug            = models.SlugField(unique = True)
+    slug            = models.SlugField(blank = True, unique = True)
     descricao       = models.TextField()
     preco           = models.DecimalField(decimal_places=2, max_digits=20, default=100.00)
     imagem          = models.ImageField(upload_to = 'produtos/', null=True, blank=True)
@@ -44,3 +46,9 @@ class Produto(models.Model): #produto_categoria
     #python 2
     def __unicode__(self):
         return self.nome
+
+def produto_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(produto_pre_save_receiver, sender = Produto)
