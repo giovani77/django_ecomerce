@@ -1,6 +1,7 @@
 from django.db import models
 from .utils import unique_slug_generator
 from django.db.models.signals import pre_save
+from django.urls import reverse
 
 #Custom queryset
 class ProdutoQuerySet(models.query.QuerySet):
@@ -36,11 +37,13 @@ class Produto(models.Model): #produto_categoria
     imagem          = models.ImageField(upload_to = 'produtos/', null=True, blank=True)
     ehDestaque      = models.BooleanField(default = False)
     ehProdutoAtivo  = models.BooleanField(default = True)
+    timestamp       = models.DateTimeField(auto_now_add = True)
 
     objects = ProdutoManager()
     
     def get_absolute_url(self):
-        return "/produtos/{slug}/".format(slug = self.slug)
+        #return "/produtos/{slug}/".format(slug = self.slug)
+        return reverse("produtos:detail", kwargs={"slug": self.slug})
 
     #pythen 3
     def __str__(self):
