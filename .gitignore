@@ -1,5 +1,5 @@
 # Byte-compiled / optimized / DLL files
 myvenv/
-*__pycache__/
+*__pycache__*
 src/*.sqlite3
 static_cdn/static_root/
