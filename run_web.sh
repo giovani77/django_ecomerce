@@ -15,6 +15,8 @@ pip install django whitenoise
 #Acessar diretório do projeto
 cd src
 
+python -m pip install Pillow
+
 #Isso irá copiar todos os arquivos dos seus diretórios estáticos para dentro do diretório definido em STATIC_ROOT.
 python manage.py collectstatic --noinput
 
