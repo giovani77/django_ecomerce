@@ -76,10 +76,22 @@ WSGI_APPLICATION = 'lojavirtual.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DB_ENGINE = 'django.db.backends.mysql'
+DB_NAME = os.environ['DJANGO_DB']
+DB_USER = os.environ['DJANGO_DB_USER']
+DB_PASSWD = os.environ['DJANGO_DB_PASSWD']
+HOST = os.environ['DJANGO_HOST']
+PORT = os.environ['DJANGO_DB_PORT']
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': DB_ENGINE, 
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'PASSWORD': DB_PASSWD,
+        'HOST': HOST,   # Or an IP Address that your DB is hosted on
+        'PORT': PORT,
     }
 }
 
